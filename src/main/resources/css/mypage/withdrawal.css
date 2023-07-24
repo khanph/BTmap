@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+<
+style type ="text /css "> /* 버튼 테두리 없애기 */ #buttonBD {
+	padding: 10px 10px;
+	margin: 5px;
+	font-size: 15px;
+	outline: none;
+	border: none;
+	font-size: large;
+	text-align: center;
+}
+
+#buttonBD:hover {
+	box-shadow: 10px 10px 10px 0;
+}
+
+.buttonBD {
+	background-color: #FFFFFF;
+	padding: 10px 10px;
+	margin: 5px;
+	font-size: 15px;
+	outline: none;
+	border: none;
+	font-size: large;
+	text-align: center;
+}
+
+table {
+	/*  			border: 1px solid #FFCA28; */
+	/*  			border-radius: 25px; */
+	/*  			margin-left:auto;  */
+	/*  			margin-right:auto;  */
+	width:700px;
+	text-align: center;
+	border-radius: 20px;
+	text-align: center;
+	border-spacing: 15px;
+	border-color: #FFBE0A;
+}
+
+#content {
+	border-radius: 25px;
+}
+
+#div1 {
+	border: 1px solid #FFCA28;
+	border-radius: 25px;
+}
+
+tr, td {
+	border: 1px solid #FFCA28;
+	border-radius: 25px;
+	/* 			border-left:0;border-right:0;border-bottom:0;border-top:0; */
+	padding: 10px;
+	margin: 5px;
+}
+
+/* 	텍스트패딩 */
+h5 {
+	 text-align:center;
+}
+
+/* 입력창 테두리 숨기기 */
+select {
+	outline: none;
+	border: none;
+}
+
+input {
+	outline: none;
+	border: none;
+}
+
+input:focus {
+	outline: none;
+	border: none;
+}
+
+textarea {
+	outline: none;
+	border: none;
+}
+
+textarea:focus {
+	outline: none;
+	border: none;
+}
+
+.tdColor {
+	/* 텍스트가운데정렬 */
+	text-align: center;
+}
+
+/* 	버튼  */
+.orange_outline_btn {
+	color: #FFFFFF;
+	background-color: #FFB74D;
+	border-color: #FFB74D;
+	border-radius: 50%;
+	padding: 5px 10px;
+	text-align: center;
+	display: inline-block;
+}
+
+/* 		버튼 호버 색상 */
+.test_btn1 {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+	border: 1px solid #FFCC80;
+	background-color: rgba(0, 0, 0, 0);
+	color: #FFCC80;
+	padding: 5px;
+	text-align: center;
+	display: inline-block;
+}
+
+.test_btn1:hover {
+	color: white;
+	background-color: #FFCC80;
+}
+</
+style
+>

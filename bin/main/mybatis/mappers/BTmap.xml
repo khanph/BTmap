@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.boot.dao.BTmapDao">
+
+   <select id="noteList" resultType="com.boot.dto.NoteDTO">
+	    <![CDATA[
+   			SELECT *
+				FROM (SELECT rownum rn,NOTENO,name,pass,title,content,NOTETIME
+		       		 FROM (select * from note order by NOTENO desc)
+		        	 WHERE rownum <= (#{pageNum} * #{amount})
+		        	 ORDER BY NOTENO desc
+		       		 )       
+				WHERE rn > (#{pageNum} -1) * #{amount}
+	    ]]>
+    </select>
+    
+    <select id="TotalCount" resultType="int" >
+	     <![CDATA[
+			select count(*) from note 
+		 ]]>
+	</select>
+    
+    <insert id="noteWrite" parameterType="com.boot.dto.NoteDTO">
+      <![CDATA[
+    		insert into note(NOTENO,name,pass,title,content,NOTETIME) values(NVL((SELECT MAX(NOTENO) from note),0)+1,#{name},#{pass},#{title},#{content},sysdate)
+    ]]>
+    </insert>
+</mapper>
+
+

@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+table {
+	margin: auto;
+	width: 80%;
+}
+
+.head {
+	margin: auto;
+	width: 40%;
+}
+
+th, td {
+	text-align: center;
+}
+
+.div_page ul {
+	display: flex;
+	list-style: none;
+	justify-content: center;
+}
+
+img {
+	width: 120;
+	height: 50;
+}

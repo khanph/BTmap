@@ -1,0 +1,9 @@
+
+j
+java:S1192%"ODefine a constant instead of duplicating this literal "redirect:login" 3 times.(ÍéÀ•øÿÿÿÿ
+}
+java:S1319"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(ÂƒøÈøÿÿÿÿ
+}
+java:S1319>"bThe type of "param" should be an interface such as "Map" rather than the implementation "HashMap".(–Œ¡ñüÿÿÿÿ
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÂƒøÈøÿÿÿÿ
+c	java:S1000"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£–ä

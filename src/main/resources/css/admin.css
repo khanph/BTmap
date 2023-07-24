@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+        @font-face {
+            font-family: 'SUITE-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        *{
+                font-family: 'SUITE-Regular';
+        }	
+		.report_page ul,
+		.user_page ul{
+			display: flex;
+			list-style: none;
+			justify-content: center;
+		}
+		.report_page a,		
+		.user_page a{		
+			text-decoration: none;
+			color: black;
+		}
+		.report-table, 
+		.users-table {
+ 	 		background-color: #f0f0f0;
+		}
+		.main-table{		
+ 	 		background-color: #FFC147;
+ 	 		color: white;
+		}
+		.odd-row{
+			background-color: #ffffff;
+		}
+		#cap-top{
+			text-align: right;
+			caption-side: top;
+		}
+		#cap-bottom{
+			caption-side: bottom;
+			text-align: center;
+		}
+		.admin-menu ul{
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		}
+		.admin-menu ul li{
+		    font-size: 1.5em;
+		    padding-left: 7px;
+		    margin-bottom: 15px;
+		    display: inline;
+		}
+		.admin-menu a{
+		  	text-decoration: none !important;
+		  	color: black !important;
+		}
+		  .users:hover,
+		  .users.clicked {
+		  	font-weight: 900 !important;
+		}
+		  .report:hover,
+		  .report.clicked {
+		  	font-weight: 900 !important;
+		}

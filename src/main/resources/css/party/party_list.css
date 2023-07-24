@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+   .moveReview_list{
+      background-color: #FFFFFF;
+                padding:10px 10px; margin: 5px;
+                font-size:15px; 
+                outline: none;
+                border: none;
+                font-size: large;
+                  margin-left: 40%;
+}
+.moveParty_list{
+     background-color: #FFFFFF;
+                padding:10px 10px; margin: 5px;
+                font-size:15px; 
+                outline: none;
+                border: none;
+                font-size: large;
+                margin-left: 100px;
+}
+
+.report_list  {
+      background-color: #FFFFFF;
+                padding:10px 10px; margin: 5px;
+                font-size:15px; 
+                outline: none;
+                border: none;
+                font-size: large;
+                   margin-left: 100px;
+    }
+   
