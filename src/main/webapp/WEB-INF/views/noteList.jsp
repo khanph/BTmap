@@ -44,7 +44,8 @@
 					<li class="page-item"><a class="page-link"
 						href="${pageMaker.startPage - 1}" aria-label="Previous"> <span
 							aria-hidden="true">&laquo;</span>
-					</a></li>
+					</a></li> 
+					
 				</c:if>
 				<c:forEach var="num" begin="${pageMaker.startPage}"
 					end="${pageMaker.endPage}">
