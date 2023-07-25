@@ -55,6 +55,12 @@ public class BTmapController {
 		return "redirect:/noteList";
 	}
 	
+	@RequestMapping("/BTmap")
+	public String BTmap() {
+		log.info("@# BTmap");
+		return "map";
+	}
+	
 }
 
 
