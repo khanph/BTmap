@@ -31,7 +31,10 @@ public class BTmapServiceImpl implements BTmapService{
 	public int TotalCount() {
 		return dao.TotalCount();
 	}
-
+	@Override
+	public void listWrite(HashMap<String, String> param) {
+		dao.listWrite(param);
+	}
 }
 
 

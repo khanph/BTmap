@@ -23,10 +23,32 @@
 	</select>
     
     <insert id="noteWrite" parameterType="com.boot.dto.NoteDTO">
-      <![CDATA[
-    		insert into note(NOTENO,name,pass,title,content,NOTETIME) values(NVL((SELECT MAX(NOTENO) from note),0)+1,#{name},#{pass},#{title},#{content},sysdate)
-    ]]>
+     	 <![CDATA[
+    		insert into note
+    		(
+    		NOTENO,name,pass,title,content,NOTETIME
+    		) 
+    		values
+    		(
+    		NVL((SELECT MAX(NOTENO) from note),0)+1,#{name},#{pass},#{title},#{content},sysdate
+    		)
+    	]]>
     </insert>
+    
+    <insert id="listWrite" parameterType="com.boot.dto.TouristspotsDTO">
+     	<![CDATA[
+    		INSERT INTO touristspots 
+			(
+			SPOTID,SPOTNAME,ADDRESS,DESCRIPTION,LATITUDE,LONGITUDE
+			) 
+			VALUES 
+			(
+			NVL((SELECT MAX(NOTENO) from touristspots),0)+1
+			,#{SPOTNAME},#{ADDRESS},#{DESCRIPTION},#{LATITUDE},#{LONGITUDE}
+			)
+   	 	]]>
+    </insert>
+    
 </mapper>
 
 

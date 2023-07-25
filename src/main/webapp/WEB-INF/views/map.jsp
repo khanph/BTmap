@@ -18,5 +18,11 @@
 	<!-- Kakao 지도 자바스크립트 -->
 <script src="js/map.js"></script>
 
+
+관광지 리스트
+
+<ul>
+	<li> </li>
+</ul>
 </body>
 </html>
