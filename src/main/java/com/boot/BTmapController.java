@@ -1,6 +1,5 @@
 package com.boot;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boot.dto.Criteria;
-import com.boot.dto.NoteDTO;
 import com.boot.dto.PageDTO;
 import com.boot.service.BTmapService;
 
@@ -25,6 +23,11 @@ public class BTmapController {
 	@Autowired
 	private BTmapService service;
 	
+	@RequestMapping("/BTmap")
+	public String BTmap() {
+		log.info("@# BTmap");
+		return "map";
+	}
 	@RequestMapping("/noteList")
 	public String noteList(HttpServletResponse response,Model model, Criteria cri) {
 		//뒤로가기 버그
@@ -55,11 +58,6 @@ public class BTmapController {
 		return "redirect:/noteList";
 	}
 	
-	@RequestMapping("/BTmap")
-	public String BTmap() {
-		log.info("@# BTmap");
-		return "map";
-	}
 	
 }
 

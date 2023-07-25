@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BTmap</title>
-
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 	<table border="1">

@@ -5,29 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>BTmap</title>
+ <link rel="stylesheet" type="text/css" href="/css/styles.css">
+ <link rel="stylesheet" type="text/css" href="/css/map.css">
 </head>
 
 <body>
 
-<div id="map" style="width:500px;height:400px;">
-<!-- 라이브러리 불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
-	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+<div id="map"></div>
+<div id="clickLatlng"></div>
+	<!-- Kakao 지도 API 불러오기, services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ae3fe3cdeddc83d82711fb0cddf0caa&libraries=services,clusterer,drawing"></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-
-		var map = new kakao.maps.Map(container, options);
-	</script>
-	
-	
-
-
-</div>
+	<!-- Kakao 지도 자바스크립트 -->
+<script src="js/map.js"></script>
 
 </body>
 </html>
