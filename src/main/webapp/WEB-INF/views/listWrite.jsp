@@ -63,12 +63,12 @@ function validation() {
             <input type="text" name="longitude">
         </td>
     </tr>
-    <tr>
-        <td>사진 업로드</td>
-        <td>
-            <input type="file" name="img">
-        </td>
-    </tr>
+<!--     <tr> -->
+<!--         <td>사진 업로드</td> -->
+<!--         <td> -->
+<!--             <input type="file" name="img"> -->
+<!--         </td> -->
+<!--     </tr> -->
     <tr>
         <td colspan="2" align="center">
             <button type="submit" onclick="return validation()">저장</button>

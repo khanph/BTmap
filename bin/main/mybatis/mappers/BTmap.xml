@@ -38,13 +38,10 @@
     <insert id="listWrite" parameterType="com.boot.dto.TouristspotsDTO">
      	<![CDATA[
     		INSERT INTO touristspots 
-			(
-			SPOTID,SPOTNAME,ADDRESS,DESCRIPTION,LATITUDE,LONGITUDE
-			) 
 			VALUES 
 			(
-			NVL((SELECT MAX(NOTENO) from touristspots),0)+1
-			,#{SPOTNAME},#{ADDRESS},#{DESCRIPTION},#{LATITUDE},#{LONGITUDE}
+			NVL((SELECT MAX(spotid) from touristspots),0)+1
+			,#{spotname},#{address},#{description},#{latitude, jdbcType=number},#{longitude, jdbcType=number}
 			)
    	 	]]>
     </insert>

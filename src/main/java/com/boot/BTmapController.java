@@ -71,7 +71,8 @@ public class BTmapController {
 	}
 	
 	@RequestMapping("/listWrite_ok")
-	public String listWrite_ok(@RequestPart MultipartFile img, @RequestParam HashMap<String, String> param) {
+//	public String listWrite_ok(@RequestPart MultipartFile img, @RequestParam HashMap<String, String> param) {
+	public String listWrite_ok(@RequestParam HashMap<String, String> param) {
 		log.info("@# listWrite param"+param);
 		
 		 service.listWrite(param);
