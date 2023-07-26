@@ -15,6 +15,6 @@ public class TouristspotsDTO {
 	private String spotname;
 	private String address;
 	private String description;
-	private double latitude;
-	private double longitude;
+	private String latitude;
+	private String longitude;
 }

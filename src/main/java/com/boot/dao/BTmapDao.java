@@ -7,11 +7,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.NoteDTO;
+import com.boot.dto.TouristspotsDTO;
 
 @Mapper
 public interface BTmapDao {
 	public ArrayList<NoteDTO> noteList(Criteria cri);
-	public int TotalCount();
+	public ArrayList<TouristspotsDTO> BTList(Criteria cri);
+	public int totalCount();
 	public void noteWrite(HashMap<String, String> param);
 	public void listWrite(HashMap<String, String> param);
 	

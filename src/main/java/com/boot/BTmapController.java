@@ -1,9 +1,5 @@
 package com.boot;
 
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,15 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
 import com.boot.service.BTmapService;
 
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @Slf4j
@@ -31,8 +24,9 @@ public class BTmapController {
 	private BTmapService service;
 	
 	@RequestMapping("/BTmap")
-	public String BTmap() {
+	public String BTmap(Model model, Criteria cri) {
 		log.info("@# BTmap");
+		model.addAttribute("BTList", service.BTList(cri));
 		return "map";
 	}
 	@RequestMapping("/noteList")
@@ -45,7 +39,7 @@ public class BTmapController {
 		//note ∏Ò∑œ
 		model.addAttribute("list", service.noteList(cri));
 		//∆‰¿Ã¬°
-		int total=service.TotalCount();
+		int total=service.totalCount();
 		model.addAttribute("pageMaker", new PageDTO(total, cri));
 		
 		return "noteList";

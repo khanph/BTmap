@@ -5,10 +5,12 @@ import java.util.HashMap;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.NoteDTO;
+import com.boot.dto.TouristspotsDTO;
 
 public interface BTmapService {
 	public ArrayList<NoteDTO> noteList(Criteria cri);
-	public int TotalCount();
+	public ArrayList<TouristspotsDTO> BTList(Criteria cri);
+	public int totalCount();
 	public void noteWrite(HashMap<String, String> param);
 	public void listWrite(HashMap<String, String> param);
 }

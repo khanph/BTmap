@@ -15,8 +15,18 @@
 				WHERE rn > (#{pageNum} -1) * #{amount}
 	    ]]>
     </select>
+   <select id="BTList" resultType="com.boot.dto.TouristspotsDTO">
+	    <![CDATA[
+   			SELECT *
+				FROM (SELECT rownum rn,spotid,spotname,address,description,latitude,longitude,EDITTIME
+		       		 FROM touristspots
+		        	 WHERE rownum <= (#{pageNum} * #{amount})
+		       		 )       
+				WHERE rn > (#{pageNum} -1) * #{amount}
+	    ]]>
+    </select>
     
-    <select id="TotalCount" resultType="int" >
+    <select id="totalCount" resultType="int" >
 	     <![CDATA[
 			select count(*) from note 
 		 ]]>
@@ -38,10 +48,13 @@
     <insert id="listWrite" parameterType="com.boot.dto.TouristspotsDTO">
      	<![CDATA[
     		INSERT INTO touristspots 
+    		(
+    		spotid,spotname,address,description,latitude,longitude,EDITTIME
+    		)
 			VALUES 
 			(
 			NVL((SELECT MAX(spotid) from touristspots),0)+1
-			,#{spotname},#{address},#{description},#{latitude, jdbcType=number},#{longitude, jdbcType=number}
+			,#{spotname},#{address},#{description},#{latitude },#{longitude},sysdate
 			)
    	 	]]>
     </insert>
