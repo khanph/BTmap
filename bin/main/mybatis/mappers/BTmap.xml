@@ -17,12 +17,8 @@
     </select>
    <select id="BTList" resultType="com.boot.dto.TouristspotsDTO">
 	    <![CDATA[
-   			SELECT *
-				FROM (SELECT rownum rn,spotid,spotname,address,description,latitude,longitude,EDITTIME
-		       		 FROM touristspots
-		        	 WHERE rownum <= (#{pageNum} * #{amount})
-		       		 )       
-				WHERE rn > (#{pageNum} -1) * #{amount}
+   			SELECT * FROM touristspots
+		        	
 	    ]]>
     </select>
     

@@ -3,8 +3,9 @@
 	#map{
 		width:70%;
 		height:800px;
-		margin-left: 5%;
+		margin-left: 50px;
 		position: fixed;
 		bottom: 10%;
 		right: 1%;
+		width: 65%;
 	} 

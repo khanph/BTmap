@@ -1,5 +1,6 @@
 package com.boot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
+import com.boot.dto.TouristspotsDTO;
 import com.boot.service.BTmapService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,11 +27,19 @@ public class BTmapController {
 	private BTmapService service;
 	
 	@RequestMapping("/BTmap")
-	public String BTmap(Model model, Criteria cri) {
+	public String BTmap(Model model) {
 		log.info("@# BTmap");
-		model.addAttribute("BTList", service.BTList(cri));
+		model.addAttribute("BTList", service.BTList());
 		return "map";
 	}
+	
+	 @RequestMapping("/getBTList")
+	    @ResponseBody // AJAX 요청에 대해 JSON 응답을 반환하도록 설정
+	    public ArrayList<TouristspotsDTO> getBTList() {
+		 ArrayList<TouristspotsDTO> list=service.BTList();
+		 log.info("getBTList list"+list);
+	        return list; // BTList 데이터를 반환
+	    }
 	@RequestMapping("/noteList")
 	public String noteList(HttpServletResponse response,Model model, Criteria cri) {
 		//뒤로가기 버그

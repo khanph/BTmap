@@ -21,8 +21,8 @@ public class BTmapServiceImpl implements BTmapService{
 	private BTmapDao dao;
 	
 	@Override
-	public ArrayList<TouristspotsDTO> BTList(Criteria cri) {
-		return dao.BTList(cri);
+	public ArrayList<TouristspotsDTO> BTList() {
+		return dao.BTList();
 	}
 
 	@Override

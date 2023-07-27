@@ -12,7 +12,7 @@ import com.boot.dto.TouristspotsDTO;
 @Mapper
 public interface BTmapDao {
 	public ArrayList<NoteDTO> noteList(Criteria cri);
-	public ArrayList<TouristspotsDTO> BTList(Criteria cri);
+	public ArrayList<TouristspotsDTO> BTList();
 	public int totalCount();
 	public void noteWrite(HashMap<String, String> param);
 	public void listWrite(HashMap<String, String> param);
