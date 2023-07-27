@@ -10,7 +10,7 @@
 <!-- jQuery 라이브러리 가져오기 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body class="d-flex">
+<body>
 <jsp:include page="header.jsp" />
 	<!--사이드바 -->
 <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 30%;">
