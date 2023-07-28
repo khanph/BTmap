@@ -14,16 +14,16 @@
 <jsp:include page="header.jsp" />
 	<!--사이드바 -->
 <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 30%;">
-    <a href="noteList" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-5 fw-semibold">
-      	게시판 
-     	</span>
-    </a>
     <a href="listWrite" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       <span class="fs-5 fw-semibold">
       	업데이트 
+     	</span>
+    </a>
+    <a href="noteList" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-5 fw-semibold">
+      	게시판가기
      	</span>
     </a>
     <div>
@@ -58,11 +58,16 @@
 var mapContainer = document.getElementById('map'),
 mapOption = {
     center: new kakao.maps.LatLng(35.15767875878566, 129.05913411487356),
-    level: 7
+    level: 8
 };
 	
 var map = new kakao.maps.Map(mapContainer, mapOption);
-
+var marker = new kakao.maps.Marker({ 
+    // 지도 중심좌표에 마커를 생성합니다 
+    position: map.getCenter() 
+}); 
+// 지도에 마커를 표시합니다
+marker.setMap(map);
 // 장소 목록을 담을 배열
 var placeList = [];
 
@@ -153,25 +158,7 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 ///////////////////////////////////////////////////////////////
 
 
-
-/////////////////////////위도경도//////////////////////////////////////
-// 지도에 클릭 이벤트를 등록합니다
-// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
     
-    // 클릭한 위도, 경도 정보를 가져옵니다 
-    var latlng = mouseEvent.latLng; 
-    
-    // 마커 위치를 클릭한 위치로 옮깁니다
-    marker.setPosition(latlng);
-    
-    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng.getLng() + ' 입니다';
-    
-    var resultDiv = document.getElementById('clickLatlng'); 
-    resultDiv.innerHTML = message;
-    
-});
 </script>
 
 
