@@ -9,9 +9,9 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
-	<table border="1">
+	<table class=>
 			<tr>
-				<td>NO</td>
+				<td>#</td>
 				<td>이름</td>
 				<td>제목</td>
 				<td>생성시간</td>
@@ -23,6 +23,9 @@
 					<td>${list.name}</td>
 					<td>${list.title}</td>
 					<td>${list.notetime}</td>
+				</tr>
+				<tr>
+					<td colspan="4">${list.content}</td>
 				</tr>
 			</c:forEach>
 			<tr>

@@ -26,11 +26,11 @@
       	업데이트 
      	</span>
     </a>
-    
+    <div>
   	<c:forEach items="${BTList}" var="BTList">
         <div class="list-group list-group-flush border-bottom scrollarea" style="margin-left: 50px;">
             <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"
-               onclick="panTo(${BTList.latitude}, ${BTList.longitude})">
+               onclick="panTo(${BTList.latitude}, ${BTList.longitude}, '${BTList.spotname}')">
                 <div class="d-flex w-100 align-items-center justify-content-between">
                     <img src="img/${BTList.spotid}.jpg" style="width: 150px; height: 120px">
                     <strong class="ms-1">${BTList.spotname}</strong> <br>
@@ -39,16 +39,17 @@
             </a>
         </div>
     </c:forEach>
+    </div>
   </div>
   
-</body>
-</html>
 	<!--Kakao 지도 -->
 <div id="map"></div>
 <div id="clickLatlng" style="height: 50px; position: fixed; bottom: 0; right: 0;">
 	<p id="result"></p>
 </div>
 	<!-- Kakao 지도 API 불러오기, services와 clusterer, drawing 라이브러리 불러오기 -->
+</body>
+</html>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ae3fe3cdeddc83d82711fb0cddf0caa&libraries=services,clusterer,drawing"></script>
 	<!-- Kakao 지도 자바스크립트 -->
 
@@ -59,20 +60,78 @@ mapOption = {
     center: new kakao.maps.LatLng(35.15767875878566, 129.05913411487356),
     level: 7
 };
-
+	
 var map = new kakao.maps.Map(mapContainer, mapOption);
+
+// 장소 목록을 담을 배열
+var placeList = [];
+
+// 장소 정보를 가진 배열
+var places = [
+    <c:forEach items="${BTList}" var="BTList" varStatus="loop">
+        { 
+        	spotid: ${BTList.spotid}, 
+            latitude: ${BTList.latitude}, 
+            longitude: ${BTList.longitude},
+            spotname: '${BTList.spotname}',
+        }<c:if test="${!loop.last}">,</c:if>
+    </c:forEach>
+];
+
+// 모든 장소 정보를 마커로 표시
+places.forEach(function(place) {
+    var moveLatLon = new kakao.maps.LatLng(place.latitude, place.longitude);
+    var marker = new kakao.maps.Marker({
+        position: moveLatLon,
+        map: map
+    });
+    var iwContent = '<div style="padding:5px; text-align: center; width:150px;"><img src="img/'+place.spotid+'.jpg" style="width: 100%; height: 70% "><br>' + place.spotname + '</div>';
+    var iwPosition = moveLatLon;
+    var infowindow = new kakao.maps.InfoWindow({
+        position: iwPosition,
+        content: iwContent
+    });
+
+    // 마커 위에 인포윈도우를 표시합니다
+    infowindow.open(map, marker);
+
+    // 마커와 정보를 배열에 추가
+    placeList.push({ marker: marker, infowindow: infowindow });
+});
+
+
+
 ////////////////////////////화면이동///////////////////////////////////
- function panTo(latitude, longitude) {
+ function panTo(latitude, longitude, spotname) {
 // 	console.log(latitude+", "+longitude)
       // 이동할 위도 경도 위치를 생성합니다
     var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
 	var markerPosition  = new kakao.maps.LatLng(latitude, longitude); 
-	var marker = new kakao.maps.Marker({
+	marker = new kakao.maps.Marker({
 	   position: markerPosition
 	});
-	marker.setMap(map);
+	 // 기존 마커가 존재하면 지우고 새로운 마커 생성
+    if (marker) {
 	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-	// marker.setMap(null);    
+        marker.setMap(null);
+    }
+    // 새로운 마커 생성
+    marker = new kakao.maps.Marker({
+        position: moveLatLon,
+        map: map
+    });
+	var iwContent = '<div style="padding:5px;">'+spotname+'</div>', 
+					// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    				iwPosition = new kakao.maps.LatLng(latitude, longitude); //인포윈도우 표시 위치입니다
+    				
+    				// 인포윈도우를 생성합니다
+    				var infowindow = new kakao.maps.InfoWindow({
+    				    position : iwPosition, 
+    				    content : iwContent 
+    				});
+    				  
+    				// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    				infowindow.open(map, marker); 
       // 지도 중심을 부드럽게 이동시킵니다
       // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
     map.panTo(moveLatLon);
@@ -92,14 +151,10 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 ///////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////
-// 지도를 클릭한 위치에 표출할 마커입니다
-var marker = new kakao.maps.Marker({ 
-    // 지도 중심좌표에 마커를 생성합니다 
-    position: map.getCenter() 
-}); 
-// 지도에 마커를 표시합니다
-marker.setMap(map);
 
+
+
+/////////////////////////위도경도//////////////////////////////////////
 // 지도에 클릭 이벤트를 등록합니다
 // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
