@@ -32,7 +32,7 @@
             <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"
                onclick="panTo(${BTList.latitude}, ${BTList.longitude}, '${BTList.spotname}')">
                 <div class="d-flex w-100 align-items-center justify-content-between">
-                    <img src="img/${BTList.spotid}.jpg" style="width: 150px; height: 120px">
+                    <img src="img/list/${BTList.spotid}.jpg" style="width: 150px; height: 120px">
                     <strong class="ms-1">${BTList.spotname}</strong> <br>
                     <small style="width: 150px">${BTList.description}</small>
                 </div>

@@ -41,7 +41,7 @@ function validation() {
 </script>
 </head>
 <body>
-<form action="noteWrite_ok" method="post" name="frm" >
+<form action="noteWrite_ok" method="post" name="frm" enctype="multipart/form-data">
 <table border="1">
     <tr>
         <td>이름</td>
@@ -65,6 +65,12 @@ function validation() {
         <td>내용</td>
         <td>
             <textarea rows="5" cols="50" name="content"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>image</td>
+        <td>
+            <input type="file" name="noteFile">
         </td>
     </tr>
     <tr>
