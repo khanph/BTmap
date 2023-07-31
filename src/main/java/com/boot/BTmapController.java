@@ -32,14 +32,6 @@ public class BTmapController {
 		model.addAttribute("BTList", service.BTList());
 		return "map";
 	}
-	
-	 @RequestMapping("/getBTList")
-	    @ResponseBody // AJAX 요청에 대해 JSON 응답을 반환하도록 설정
-	    public ArrayList<TouristspotsDTO> getBTList() {
-		 ArrayList<TouristspotsDTO> list=service.BTList();
-		 log.info("getBTList list"+list);
-	        return list; // BTList 데이터를 반환
-	    }
 	@RequestMapping("/noteList")
 	public String noteList(HttpServletResponse response,Model model, Criteria cri) {
 		//뒤로가기 버그

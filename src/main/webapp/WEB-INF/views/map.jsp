@@ -14,31 +14,29 @@
 <jsp:include page="header.jsp" />
 	<!--사이드바 -->
 <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 30%;">
+    <a href="BTmap" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+       <span class="fs-4"> BusanTourMap</span>
+    </a>
     <a href="listWrite" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       <span class="fs-5 fw-semibold">
       	업데이트 
      	</span>
     </a>
-    <a href="noteList" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
-      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-5 fw-semibold">
-      	게시판가기
-     	</span>
-    </a>
     <div>
-  	<c:forEach items="${BTList}" var="BTList">
-        <div class="list-group list-group-flush border-bottom scrollarea" style="margin-left: 50px;">
-            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"
-               onclick="panTo(${BTList.latitude}, ${BTList.longitude}, '${BTList.spotname}')">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                    <img src="img/list/${BTList.spotid}.jpg" style="width: 150px; height: 120px">
-                    <strong class="ms-1">${BTList.spotname}</strong> <br>
-                    <small style="width: 150px">${BTList.description}</small>
-                </div>
-            </a>
-        </div>
-    </c:forEach>
+	  	<c:forEach items="${BTList}" var="BTList">
+	        <div class="list-group list-group-flush border-bottom scrollarea" style="margin-left: 50px;">
+	            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"
+	               onclick="panTo(${BTList.latitude}, ${BTList.longitude}, '${BTList.spotname}')">
+	                <div class="d-flex w-100 align-items-center justify-content-between">
+	                    <img src="img/list/${BTList.spotid}.jpg" style="width: 150px; height: 120px">
+	                    <strong class="ms-1">${BTList.spotname}</strong> <br>
+	                    <small style="width: 150px">${BTList.description}</small>
+	                </div>
+	            </a>
+	        </div>
+	    </c:forEach>
     </div>
   </div>
   
@@ -47,9 +45,10 @@
 <div id="clickLatlng" style="height: 50px; position: fixed; bottom: 0; right: 0;">
 	<p id="result"></p>
 </div>
-	<!-- Kakao 지도 API 불러오기, services와 clusterer, drawing 라이브러리 불러오기 -->
+<jsp:include page="footer.jsp" />
 </body>
 </html>
+	<!-- Kakao 지도 API 불러오기, services와 clusterer, drawing 라이브러리 불러오기 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4ae3fe3cdeddc83d82711fb0cddf0caa&libraries=services,clusterer,drawing"></script>
 	<!-- Kakao 지도 자바스크립트 -->
 
@@ -90,7 +89,7 @@ places.forEach(function(place) {
         position: moveLatLon,
         map: map
     });
-    var iwContent = '<div style="padding:5px; text-align: center; width:150px;"><img src="img/'+place.spotid+'.jpg" style="width: 100%; height: 70% "><br>' + place.spotname + '</div>';
+    var iwContent = '<div style="padding:5px; text-align: center; width:150px;"><img src="img/list/'+place.spotid+'.jpg" style="width: 100%; height: 70% "><br>' + place.spotname + '</div>';
     var iwPosition = moveLatLon;
     var infowindow = new kakao.maps.InfoWindow({
         position: iwPosition,

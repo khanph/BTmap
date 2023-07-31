@@ -9,63 +9,65 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
-	<table class=>
-			<tr>
-				<td>#</td>
-				<td>이름</td>
-				<td>제목</td>
-				<td>생성시간</td>
-			</tr>
-			
-			<c:forEach items="${list}" var="list" varStatus="status">
-				<tr>
-					<td>${list.noteno}</td>
-					<td>${list.name}</td>
-					<td>${list.title}</td>
-					<td>${list.notetime}</td>
-				</tr>
-				<tr>
-					<td colspan="4">${list.content}</td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td colspan="4" align="center">
-					<input type="button" value="글쓰기" onclick="location='noteWrite'">
-				</td>
-			</tr>
-	</table>
-	<!-- 페이징 -->
-	<form method="get" action="#" id="actionForm">
-		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-		<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-	</form>
-	
 	<div>
-		<nav aria-label="Page navigation example">
-			<ul
-				class="pagination pagination-lg justify-content-center mt-5">
-				<c:if test="${pageMaker.prev}">
-					<li class="page-item"><a class="page-link"
-						href="${pageMaker.startPage - 1}" aria-label="Previous"> <span
-							aria-hidden="true">&laquo;</span>
-					</a></li> 
-					
-				</c:if>
-				<c:forEach var="num" begin="${pageMaker.startPage}"
-					end="${pageMaker.endPage}">
-					<li class="page-item " ${pageMaker.cri.pageNum == num }><a
-						class="page-link" href="${num}"> ${num} </a></li>
+		<table class=>
+				<tr>
+					<td>#</td>
+					<td>이름</td>
+					<td>제목</td>
+					<td>생성시간</td>
+				</tr>
+				
+				<c:forEach items="${list}" var="list" varStatus="status">
+					<tr>
+						<td>${list.noteno}</td>
+						<td>${list.name}</td>
+						<td>${list.title}</td>
+						<td>${list.notetime}</td>
+					</tr>
+					<tr>
+						<td colspan="4">${list.content}</td>
+					</tr>
 				</c:forEach>
-				<c:if test="${pageMaker.next}">
-					<li class="page-item"><a class="page-link"
-						href="${pageMaker.endPage + 1}" aria-label="Next"> <span
-							aria-hidden="true">&raquo;</span>
-					</a></li>
-				</c:if>
-			</ul>
-		</nav>
+				<tr>
+					<td colspan="4" align="center">
+						<input type="button" value="글쓰기" onclick="location='noteWrite'">
+					</td>
+				</tr>
+		</table>
+		<!-- 페이징 -->
+		<form method="get" action="#" id="actionForm">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+		</form>
+		
+		<div>
+			<nav aria-label="Page navigation example">
+				<ul
+					class="pagination pagination-lg justify-content-center mt-5">
+					<c:if test="${pageMaker.prev}">
+						<li class="page-item"><a class="page-link"
+							href="${pageMaker.startPage - 1}" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li> 
+						
+					</c:if>
+					<c:forEach var="num" begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}">
+						<li class="page-item " ${pageMaker.cri.pageNum == num }><a
+							class="page-link" href="${num}"> ${num} </a></li>
+					</c:forEach>
+					<c:if test="${pageMaker.next}">
+						<li class="page-item"><a class="page-link"
+							href="${pageMaker.endPage + 1}" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:if>
+				</ul>
+			</nav>
+		</div>
 	</div>
-
+<jsp:include page="footer.jsp" />
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

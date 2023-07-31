@@ -30,7 +30,7 @@ function validation() {
 }
 </script>
 </head>
-<body>
+<body><jsp:include page="header.jsp" />
 <form action="listWrite_ok" method="post" name="frm" enctype="multipart/form-data">
 <table border="1">
     <tr>
@@ -77,7 +77,7 @@ function validation() {
     </tr>
 </table>
 </form>
-
+<jsp:include page="footer.jsp" />
 </body>
 </html>
 
