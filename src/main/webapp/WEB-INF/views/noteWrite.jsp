@@ -40,7 +40,7 @@ function validation() {
 }
 </script>
 </head>
-<body><jsp:include page="header.jsp" />
+<body class=" d-flex flex-column min-vh-100"><jsp:include page="header.jsp" />
 <form action="noteWrite_ok" method="post" name="frm" enctype="multipart/form-data">
 <table border="1">
     <tr>
