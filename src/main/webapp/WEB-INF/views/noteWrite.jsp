@@ -16,71 +16,46 @@
 // 	}
 // } 
 	
-function validation() {
-
-    if (frm.name.value.trim() == '') {
-        alert("이름을 입력해주세요");
-        return false;
-    }
-    if (frm.pass.value.trim() == '') {
-        alert("비밀번호를 입력해주세요");
-        return false;
-    }
-
-    if (frm.title.value.trim() == '') {
-        alert("제목을 입력해주세요");
-        return false;
-    }
-
-    if (frm.content.value.trim() == '') {
-        alert("내용을 입력해주세요");
-        return false;
-    }
-    return true;
-}
 </script>
 </head>
-<body class=" d-flex flex-column min-vh-100"><jsp:include page="header.jsp" />
-<form action="noteWrite_ok" method="post" name="frm" enctype="multipart/form-data">
-<table border="1">
-    <tr>
-        <td>이름</td>
-        <td>
-            <input type="text" name="name">
-        </td>
-    </tr>
-    <tr>
-        <td>비밀번호</td>
-        <td>
-            <input type="password" name="pass">
-        </td>
-    </tr>
-    <tr>
-        <td>제목</td>
-        <td>
-            <input type="text" name="title">
-        </td>
-    </tr>
-    <tr>
-        <td>내용</td>
-        <td>
-            <textarea rows="5" cols="50" name="content"></textarea>
-        </td>
-    </tr>
-    <tr>
-        <td>image</td>
-        <td>
-            <input type="file" name="noteFile">
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">
-            <button type="submit" onclick="return validation()">글쓰기</button>
-            <input type="button" value="취소" onclick="location='noteList'">
-        </td>
-    </tr>
-</table>
-</form>
+<body class="mx-5"><jsp:include page="header.jsp" />
+
+	<div class="d-flex justify-content-center ">
+		<form action="noteWrite_ok" method="post" name="frm" enctype="multipart/form-data" class="needs-validation">
+          <div class="row g-3 ms-5 ps-5" style="width: 60%">
+          
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">아이디</label>
+              <input type="text" class="form-control" name="name" placeholder="아이디를 입력해주세요" required="">
+              <label for="firstName" class="form-label">비밀번호</label>
+              <input type="password" class="form-control" name="pass" placeholder="비밀번호를 입력해주세요" required="">
+            </div>
+            
+            <div class="col-8">
+              <label for="address" class="form-label">제목</label>
+              <input type="text" class="form-control" name="title" placeholder="제목를 입력해주세요" required="">
+            </div>
+            
+            <div class="col-8">
+              <label for="address" class="form-label">내용</label> <br>
+              <textarea name="content" class="form-control" rows="10" placeholder="내용을 입력해주세요"></textarea>
+            </div>
+            
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">image</label>
+              <input type="file" class="form-control" name="noteFile" >
+            </div>
+            
+	        <hr class="my-3">
+	        <div class="d-flex justify-content-evenly">
+		        <button class=" btn btn-dark" type="submit">작성완료</button>
+		        <button class=" btn btn-dark" type="button" onclick="location='BTmap'">작성취소</button>
+	        </div>
+	          
+          </div>
+        </form>
+      </div>
+      
 <jsp:include page="footer.jsp" />
 </body>
 </html>

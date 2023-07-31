@@ -15,10 +15,13 @@
 <!--       </a> -->
 <!--     </header> -->
     <div class="container p-0">
-    <header class="d-flex justify-content-between py-3">
+    <header class="d-flex justify-content-between py-4">
      	<ul class="nav nav-pills">
      		<li class="nav-item">
-     			<span class="fs-2"> BusanTourMap</span>
+     			<a href="BTmap" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+			      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+			      <span class="fs-2"> BusanTourMap</span>
+			    </a>
      		 </li>
      	</ul>
 	    <ul class="nav nav-pills">

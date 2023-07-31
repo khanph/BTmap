@@ -6,77 +6,48 @@
 <title>BTmap</title>
 <script type="text/javascript">
 
-function validation() {
-
-    if (frm.spotname.value.trim() == '') {
-        alert("이름을 입력해주세요");
-        return false;
-    }
-    if (frm.address.value.trim() == '') {
-        alert("주소를 입력해주세요");
-        return false;
-    }
-
-    if (frm.latitude.value.trim() == '') {
-        alert("위도를 입력해주세요");
-        return false;
-    }
-
-    if (frm.longitude.value.trim() == '') {
-        alert("경도를 입력해주세요");
-        return false;
-    }
-    return true;
-}
 </script>
 </head>
-<body class=" d-flex flex-column min-vh-100"><jsp:include page="header.jsp" />
-<form action="listWrite_ok" method="post" name="frm" enctype="multipart/form-data">
-<table border="1">
-    <tr>
-        <td>이름</td>
-        <td>
-            <input type="text" name="spotname">
-        </td>
-    </tr>
-    <tr>
-        <td>주소</td>
-        <td> 
-            <input type="text" name="address">
-        </td>
-    </tr>
-    <tr>
-        <td>설명</td>
-        <td>
-        	<textarea rows="10" cols="30" name="description"></textarea>
-        </td>
-    </tr>
-    <tr>
-        <td>위도</td>
-        <td>
-            <input type="text" name="latitude">
-        </td>
-    </tr>
-    <tr>
-        <td>경도</td>
-        <td>
-            <input type="text" name="longitude">
-        </td>
-    </tr>
-<!--     <tr> -->
-<!--         <td>사진 업로드</td> -->
-<!--         <td> -->
-<!--             <input type="file" name="img"> -->
-<!--         </td> -->
-<!--     </tr> -->
-    <tr>
-        <td colspan="2" align="center">
-            <button type="submit" onclick="return validation()">저장</button>
-            <input type="button" value="취소" onclick="location='noteList'">
-        </td>
-    </tr>
-</table>
-</form>
+<body class="mx-5"><jsp:include page="header.jsp" />
+
+	<div class="d-flex justify-content-center my-3">
+		<form action="listWrite_ok" method="post" name="frm" enctype="multipart/form-data" class="needs-validation">
+          <div class="row g-3 ms-5 ps-5" style="width: 60%">
+          
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">관광지명</label>
+              <input type="text" class="form-control" name="spotname" placeholder="관광지명을 넣으세요" required="">
+            </div>
+
+            <div class="col-8">
+              <label for="address" class="form-label">주소</label>
+              <input type="text" class="form-control" name="address" placeholder="주소를 입력해주세요" required="">
+            </div>
+            
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">위도</label>
+              <input type="text" class="form-control" name="latitude" placeholder="위도를 입력해주세요" required="">
+            </div>
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">경도</label>
+              <input type="text" class="form-control" name="longitude" placeholder="경도를 입력해주세요" required="">
+            </div>
+            
+            <div class="col-8">
+              <label for="address" class="form-label">관광지정보</label> <br>
+              <textarea name="description" class="form-control" rows="10" placeholder="정보를 입력해주세요"></textarea>
+            </div>
+            
+	        <hr class="my-3">
+	        <div class="d-flex justify-content-evenly">
+		        <button class=" btn btn-dark" type="submit">작성완료</button>
+		        <button class=" btn btn-dark" type="button" onclick="location='BTmap'">작성취소</button>
+	        </div>
+	          
+          </div>
+        </form>
+      </div>
+      
 <jsp:include page="footer.jsp" />
 </body>
 </html>
