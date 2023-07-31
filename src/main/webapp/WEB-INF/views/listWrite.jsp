@@ -4,14 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <title>BTmap</title>
-<script type="text/javascript">
-
-</script>
 </head>
-<body class="mx-5"><jsp:include page="header.jsp" />
+<body><jsp:include page="header.jsp" />
 
 	<div class="d-flex justify-content-center my-3">
-		<form action="listWrite_ok" method="post" name="frm" enctype="multipart/form-data" class="needs-validation">
+		<form action="listWrite_ok" method="post" enctype="multipart/form-data" class="needs-validation">
           <div class="row g-3 ms-5 ps-5" style="width: 60%">
           
             <div class="col-sm-6">
@@ -27,8 +24,6 @@
             <div class="col-sm-6">
               <label for="firstName" class="form-label">위도</label>
               <input type="text" class="form-control" name="latitude" placeholder="위도를 입력해주세요" required="">
-            </div>
-            <div class="col-sm-6">
               <label for="firstName" class="form-label">경도</label>
               <input type="text" class="form-control" name="longitude" placeholder="경도를 입력해주세요" required="">
             </div>
@@ -36,6 +31,11 @@
             <div class="col-8">
               <label for="address" class="form-label">관광지정보</label> <br>
               <textarea name="description" class="form-control" rows="10" placeholder="정보를 입력해주세요"></textarea>
+            </div>
+            
+             <div class="col-sm-6">
+              <label for="firstName" class="form-label">image</label>
+              <input type="file" class="form-control" name="noteFile" >
             </div>
             
 	        <hr class="my-3">

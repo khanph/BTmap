@@ -18,6 +18,7 @@ public class NoteDTO {
 	private String title;
 	private String content;
 	private Date notetime;
+	private String imgName;
 }
 
 

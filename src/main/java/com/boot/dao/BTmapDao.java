@@ -16,5 +16,6 @@ public interface BTmapDao {
 	public int totalCount();
 	public void noteWrite(HashMap<String, String> param);
 	public void listWrite(HashMap<String, String> param);
+	public int getNoteNo(); 
 	
 }

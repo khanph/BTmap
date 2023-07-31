@@ -4,24 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <title>BTmap</title>
-<script type="text/javascript">
-
-// 아이디 중복검사
-// function idCheck(){
-// 	if(myform.id.value == ""){
-// 		alert('중복된 아이디입니다.');
-// 	}
-// 	else{
-// 		alert('사용 가능한 아이디입니다.');
-// 	}
-// } 
-	
-</script>
 </head>
-<body class="mx-5"><jsp:include page="header.jsp" />
+<body><jsp:include page="header.jsp" />
 
-	<div class="d-flex justify-content-center ">
-		<form action="noteWrite_ok" method="post" name="frm" enctype="multipart/form-data" class="needs-validation">
+	<div class="d-flex justify-content-center my-3">
+		<form action="noteWrite_ok" method="post" enctype="multipart/form-data" class="needs-validation">
           <div class="row g-3 ms-5 ps-5" style="width: 60%">
           
             <div class="col-sm-6">
@@ -43,9 +30,9 @@
             
             <div class="col-sm-6">
               <label for="firstName" class="form-label">image</label>
-              <input type="file" class="form-control" name="noteFile" >
+              <input type="file" class="form-control" name="file" >
             </div>
-            
+             
 	        <hr class="my-3">
 	        <div class="d-flex justify-content-evenly">
 		        <button class=" btn btn-dark" type="submit">작성완료</button>

@@ -7,7 +7,7 @@
    <select id="noteList" resultType="com.boot.dto.NoteDTO">
 	    <![CDATA[
    			SELECT *
-				FROM (SELECT rownum rn,NOTENO,name,pass,title,content,NOTETIME
+				FROM (SELECT rownum rn,NOTENO,name,pass,title,content,NOTETIME,imgName
 		       		 FROM (select * from note order by NOTENO desc)
 		        	 WHERE rownum <= (#{pageNum} * #{amount})
 		        	 ORDER BY NOTENO desc
@@ -32,11 +32,11 @@
      	 <![CDATA[
     		insert into note
     		(
-    		NOTENO,name,pass,title,content,NOTETIME
+    		NOTENO,name,pass,title,content,NOTETIME,imgName
     		) 
     		values
     		(
-    		NVL((SELECT MAX(NOTENO) from note),0)+1,#{name},#{pass},#{title},#{content},sysdate
+    		NVL((SELECT MAX(NOTENO) from note),0)+1,#{name},#{pass},#{title},#{content},sysdate,#{imgName}
     		)
     	]]>
     </insert>

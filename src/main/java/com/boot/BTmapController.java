@@ -1,7 +1,9 @@
 package com.boot;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,11 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
-import com.boot.dto.TouristspotsDTO;
 import com.boot.service.BTmapService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -55,9 +56,37 @@ public class BTmapController {
 	}
 	
 	@RequestMapping("/noteWrite_ok")
-	public String noteWrite_ok(@RequestParam HashMap<String, String> param) {
-		log.info("@# noteWrite_ok param"+param);
-		service.noteWrite(param);
+	public String noteWrite_ok(@RequestParam HashMap<String, String> param, MultipartFile file) throws IllegalStateException, Exception {
+		log.info("@# noteWrite_ok param=="+param);
+		log.info("@# noteWrite_ok file=="+file);
+		
+		if (file.isEmpty()) {
+			service.noteWrite(param);
+		}else {
+			/*우리의 프로젝트경로를 담아주게 된다 - 저장할 경로를 지정*/
+	        String projectPath ="C:\\workplace\\workspace\\BTmap\\src\\main\\resources\\static\\img\\note";
+	        log.info("@# noteWrite_ok 1 projectPath=="+projectPath);
+
+	        /*식별자 . 랜덤으로 이름 만들어줌*/
+	        UUID uuid = UUID.randomUUID();
+	        
+	        log.info("@# noteWrite_ok 2 noteno=="+uuid);
+	        /*랜덤식별자_원래파일이름 = 저장될 파일이름 지정*/
+	        String fileName = uuid + "_" + file.getOriginalFilename();
+	        log.info("@# noteWrite_ok 3 fileName=="+fileName);
+
+	        /*빈 껍데기 생성*/
+	        /*File을 생성할건데, 이름은 "name" 으로할거고, projectPath 라는 경로에 담긴다는 뜻*/
+	        File saveFile = new File(projectPath, fileName);
+	        log.info("@# noteWrite_ok 4 ");
+	        
+	        file.transferTo(saveFile);
+	        
+	        /*경로를 데이터베이스에 저장*/
+	        param.put("imgName", fileName);
+	        log.info("@# noteWrite_ok 5 param="+param);
+	        service.noteWrite(param);
+		}
 		
 		return "redirect:/noteList";
 	}
