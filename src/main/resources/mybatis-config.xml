@@ -3,8 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
- <mappers>
-<!--  SQL파일(+경로) -->
- 	<mapper resource="mybatis/mappers/BTmap.xml"/>
- </mappers>
+	<!-- 	settings이 mappers보다 위에있어야 오류사라짐 -->
+	
+	<!--이미지파일이 null일 때 오류방지용 -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	 <mappers>
+	<!--  SQL파일(+경로) -->
+	 	<mapper resource="mybatis/mappers/BTmap.xml"/>
+	 </mappers>
+	
 </configuration>

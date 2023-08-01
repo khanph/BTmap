@@ -33,23 +33,27 @@
 							<td>${list.title}</td>
 							<td>${list.notetime}</td>
 						</tr>
-						<td colspan="4" style="text-align: left; border-bottom: 1px dotted;">
-							<img alt="" src="img/note/${list.imgName}" style="height: 120px; width: 150px;">
-							${list.content}
-						</td>
+						<tr>
+							<td colspan="4" style="text-align: left; border-bottom: 1px dotted;">
+							<c:if test="${not empty list.imgName}">
+									<img alt="" src="img/note/${list.imgName}" style="height: 120px; width: 150px;">
+							</c:if>
+								${list.content}
+							</td>
+						</tr>
 					</c:forEach>
                 </tbody>
             </table>
 	    </div>
 	</div>
 
-		<!-- 페이징 -->
+		<!-- 페이징 처리-->
 		<form method="get" action="#" id="actionForm">
 			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 		</form>
 		
-		<nav aria-label="Page navigation example">
+		<nav>
 			<ul
 				class="pagination pagination-lg justify-content-center mt-5">
 				<c:if test="${pageMaker.prev}">
