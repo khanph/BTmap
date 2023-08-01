@@ -35,15 +35,16 @@
              
 	        <hr class="my-3">
 	        <div class="d-flex justify-content-evenly">
-		        <button class=" btn btn-dark" type="submit">작성완료</button>
+		        <button class=" btn btn-dark" type="submit" >작성완료</button>
 		        <button class=" btn btn-dark" type="button" onclick="location='BTmap'">작성취소</button>
 	        </div>
-	          
           </div>
         </form>
       </div>
       
 <jsp:include page="footer.jsp" />
+
+
 </body>
 </html>
 

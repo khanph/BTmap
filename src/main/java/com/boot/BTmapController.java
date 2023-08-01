@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
@@ -61,10 +62,10 @@ public class BTmapController {
 	public String noteWrite_ok(@RequestParam HashMap<String, String> param, MultipartFile file) throws IllegalStateException, Exception {
 		log.info("@# noteWrite_ok param=="+param);
 		log.info("@# noteWrite_ok file=="+file);
-		
-		if (file.isEmpty()) {
-			service.noteWrite(param);
-		}else {
+
+        if (file.isEmpty()) {
+            service.noteWrite(param);
+        } else {
 			/*우리의 프로젝트경로를 담아주게 된다 - 저장할 경로를 지정*/
 	        String projectPath ="C:\\workplace\\workspace\\BTmap\\src\\main\\resources\\static\\img\\note";
 
@@ -83,9 +84,9 @@ public class BTmapController {
 	        /*경로를 데이터베이스에 저장*/
 	        param.put("imgName", fileName);
 	        service.noteWrite(param);
-		}
-		
-		return "redirect:/noteList";
+	        
+        }
+        return "redirect:/noteList";
 	}
 	
 	@RequestMapping("/listWrite")

@@ -9,6 +9,11 @@
 </head>
 <body class=" d-flex flex-column min-vh-100">
 <jsp:include page="header.jsp" />
+	<c:if test="${not empty successMessage}">
+	    <div class="d-flex justify-content-between alert alert-success" role="alert">
+	        ${successMessage}
+	    </div>
+	</c:if>
 
 	<div class="card" style=" margin-left: 30%; margin-right: 30%; margin-top: 5%">
 	    <div class="card-header d-flex justify-content-between">우리들의 스토리
@@ -42,8 +47,8 @@
 								</tr>
 							</c:when>
 						</c:choose>
-						<tr>
-							<td colspan="4" style="text-align: left; border-bottom: 1px dotted;"> 
+						<tr style="height: 20px;">
+							<td colspan="4" style="text-align: left; border-bottom: 1px dotted; padding-bottom: 10px;"> 
 								${list.content}
 							</td>
 						</tr>
