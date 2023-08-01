@@ -33,14 +33,22 @@
 							<td>${list.title}</td>
 							<td>${list.notetime}</td>
 						</tr>
+						<c:choose>
+							<c:when test="${list.imgName ne null }">
+								<tr>
+									<td colspan="4" style="text-align: left;">
+										<img alt="" src="img/note/${list.imgName}" style="height: 120px; width: 150px;">
+									</td>
+								</tr>
+							</c:when>
+						</c:choose>
 						<tr>
-							<td colspan="4" style="text-align: left; border-bottom: 1px dotted;">
-							<c:if test="${not empty list.imgName}">
-									<img alt="" src="img/note/${list.imgName}" style="height: 120px; width: 150px;">
-							</c:if>
+							<td colspan="4" style="text-align: left; border-bottom: 1px dotted;"> 
 								${list.content}
 							</td>
 						</tr>
+						
+						
 					</c:forEach>
                 </tbody>
             </table>

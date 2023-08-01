@@ -1,7 +1,6 @@
 package com.boot;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -30,9 +29,12 @@ public class BTmapController {
 	@RequestMapping("/BTmap")
 	public String BTmap(Model model) {
 		log.info("@# BTmap");
+		log.info("@# BTmap BTList"+service.BTList());
 		model.addAttribute("BTList", service.BTList());
+		
 		return "map";
 	}
+	
 	@RequestMapping("/noteList")
 	public String noteList(HttpServletResponse response,Model model, Criteria cri) {
 		//뒤로가기 버그
@@ -65,31 +67,27 @@ public class BTmapController {
 		}else {
 			/*우리의 프로젝트경로를 담아주게 된다 - 저장할 경로를 지정*/
 	        String projectPath ="C:\\workplace\\workspace\\BTmap\\src\\main\\resources\\static\\img\\note";
-	        log.info("@# noteWrite_ok 1 projectPath=="+projectPath);
 
 	        /*식별자 . 랜덤으로 이름 만들어줌*/
 	        UUID uuid = UUID.randomUUID();
 	        
-	        log.info("@# noteWrite_ok 2 noteno=="+uuid);
 	        /*랜덤식별자_원래파일이름 = 저장될 파일이름 지정*/
 	        String fileName = uuid + "_" + file.getOriginalFilename();
-	        log.info("@# noteWrite_ok 3 fileName=="+fileName);
 
 	        /*빈 껍데기 생성*/
 	        /*File을 생성할건데, 이름은 "name" 으로할거고, projectPath 라는 경로에 담긴다는 뜻*/
 	        File saveFile = new File(projectPath, fileName);
-	        log.info("@# noteWrite_ok 4 ");
 	        
 	        file.transferTo(saveFile);
 	        
 	        /*경로를 데이터베이스에 저장*/
 	        param.put("imgName", fileName);
-	        log.info("@# noteWrite_ok 5 param="+param);
 	        service.noteWrite(param);
 		}
 		
 		return "redirect:/noteList";
 	}
+	
 	@RequestMapping("/listWrite")
 	public String listWrite() {
 		log.info("@# listWrite");
@@ -98,11 +96,31 @@ public class BTmapController {
 	
 	@RequestMapping("/listWrite_ok")
 //	public String listWrite_ok(@RequestPart MultipartFile img, @RequestParam HashMap<String, String> param) {
-	public String listWrite_ok(@RequestParam HashMap<String, String> param) {
+	public String listWrite_ok(@RequestParam HashMap<String, String> param, MultipartFile file) throws IllegalStateException, Exception {
 		log.info("@# listWrite param"+param);
+		log.info("@# listWrite file="+file);
 		
-		 service.listWrite(param);
+		/*우리의 프로젝트경로를 담아주게 된다 - 저장할 경로를 지정*/
+        String projectPath ="C:\\workplace\\workspace\\BTmap\\src\\main\\resources\\static\\img\\list";
+
+        /*식별자 . 랜덤으로 이름 만들어줌*/
+        UUID uuid = UUID.randomUUID();
+        
+        /*랜덤식별자_원래파일이름 = 저장될 파일이름 지정*/
+        String fileName = uuid + "_" + file.getOriginalFilename();
+
+        /*빈 껍데기 생성*/
+        /*File을 생성할건데, 이름은 "name" 으로할거고, projectPath 라는 경로에 담긴다는 뜻*/
+        File saveFile = new File(projectPath, fileName);
+        
+        file.transferTo(saveFile);
+        
+        /*경로를 데이터베이스에 저장*/
+        param.put("imgName", fileName);
+        
+		service.listWrite(param);
 		
+//		return "redirect:/BTmap";
 		return "listWrite";
 	}
 	

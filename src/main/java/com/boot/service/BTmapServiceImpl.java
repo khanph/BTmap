@@ -32,7 +32,6 @@ public class BTmapServiceImpl implements BTmapService{
 
 	@Override
 	public ArrayList<NoteDTO> noteList(Criteria cri) {
-		log.info("cri=="+cri.getAmount());
 		return dao.noteList(cri);
 	}
 

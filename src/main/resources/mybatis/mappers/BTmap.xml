@@ -17,7 +17,7 @@
     </select>
    <select id="BTList" resultType="com.boot.dto.TouristspotsDTO">
 	    <![CDATA[
-   			SELECT * FROM touristspots
+   			select*from touristspots ORDER by spotid desc
 		        	
 	    ]]>
     </select>
@@ -45,12 +45,12 @@
      	<![CDATA[
     		INSERT INTO touristspots 
     		(
-    		spotid,spotname,address,description,latitude,longitude,EDITTIME
+    		spotid,spotname,address,description,latitude,longitude,EDITTIME,imgName
     		)
 			VALUES 
 			(
 			NVL((SELECT MAX(spotid) from touristspots),0)+1
-			,#{spotname},#{address},#{description},#{latitude },#{longitude},sysdate
+			,#{spotname},#{address},#{description},#{latitude },#{longitude},sysdate,#{imgName}
 			)
    	 	]]>
     </insert>
