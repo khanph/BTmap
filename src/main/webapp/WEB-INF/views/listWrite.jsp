@@ -8,7 +8,7 @@
 <body><jsp:include page="header.jsp" />
 
 	<div class="d-flex justify-content-center my-3">
-		<form action="listWrite_ok" method="post" enctype="multipart/form-data" class="needs-validation">
+		<form action="listWrite_ok" method="post" enctype="multipart/form-data" class="needs-validation" id="uploadForm">
           <div class="row g-3 ms-5 ps-5" style="width: 60%">
           
             <div class="col-sm-6">
@@ -51,7 +51,31 @@
 <jsp:include page="footer.jsp" />
 </body>
 </html>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function uploadData() {
+        var formData = new FormData(document.getElementById('uploadForm'));
+        $.ajax({
+            url: 'listWrite_ok',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (data) {
+            	console.log(data);
+                if (data) {
+                  	alert('글쓰기 성공')
+                  	window.location.href = 'redirect:/noteList'; 
+                } else {
+                    alert('실패');
+                }
+            },
+            error: function () {
+                alert('서버와의 통신에 실패했습니다.');
+            }
+        });
+    }
+</script>
 
 
 

@@ -7,12 +7,14 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
@@ -59,11 +61,11 @@ public class BTmapController {
 	}
 	
 	@RequestMapping("/noteWrite_ok")
-	public String noteWrite_ok(@RequestParam HashMap<String, String> param, MultipartFile file) throws IllegalStateException, Exception {
+	public ResponseEntity<Integer> noteWrite_ok(@RequestParam HashMap<String, String> param, MultipartFile file) throws IllegalStateException, Exception {
 		log.info("@# noteWrite_ok param=="+param);
 		log.info("@# noteWrite_ok file=="+file);
 
-        if (file.isEmpty()) {
+        if (file==null) {
             service.noteWrite(param);
         } else {
 			/*우리의 프로젝트경로를 담아주게 된다 - 저장할 경로를 지정*/
@@ -86,7 +88,7 @@ public class BTmapController {
 	        service.noteWrite(param);
 	        
         }
-        return "redirect:/noteList";
+        return ResponseEntity.status(HttpStatus.OK).body(100);
 	}
 	
 	@RequestMapping("/listWrite")
@@ -94,35 +96,33 @@ public class BTmapController {
 		log.info("@# listWrite");
 		return "listWrite";
 	}
-	
 	@RequestMapping("/listWrite_ok")
-//	public String listWrite_ok(@RequestPart MultipartFile img, @RequestParam HashMap<String, String> param) {
-	public String listWrite_ok(@RequestParam HashMap<String, String> param, MultipartFile file) throws IllegalStateException, Exception {
+	public ResponseEntity<Integer> listWrite_ok(@RequestParam HashMap<String, String> param, MultipartFile file) throws IllegalStateException, Exception {
 		log.info("@# listWrite param"+param);
 		log.info("@# listWrite file="+file);
-		
-		/*우리의 프로젝트경로를 담아주게 된다 - 저장할 경로를 지정*/
-        String projectPath ="C:\\workplace\\workspace\\BTmap\\src\\main\\resources\\static\\img\\list";
-
-        /*식별자 . 랜덤으로 이름 만들어줌*/
-        UUID uuid = UUID.randomUUID();
-        
-        /*랜덤식별자_원래파일이름 = 저장될 파일이름 지정*/
-        String fileName = uuid + "_" + file.getOriginalFilename();
-
-        /*빈 껍데기 생성*/
-        /*File을 생성할건데, 이름은 "name" 으로할거고, projectPath 라는 경로에 담긴다는 뜻*/
-        File saveFile = new File(projectPath, fileName);
-        
-        file.transferTo(saveFile);
-        
-        /*경로를 데이터베이스에 저장*/
-        param.put("imgName", fileName);
-        
-		service.listWrite(param);
-		
-//		return "redirect:/BTmap";
-		return "listWrite";
+			
+			/*우리의 프로젝트경로를 담아주게 된다 - 저장할 경로를 지정*/
+			String projectPath ="C:\\workplace\\workspace\\BTmap\\src\\main\\resources\\static\\img\\list";
+			
+			/*식별자 . 랜덤으로 이름 만들어줌*/
+			UUID uuid = UUID.randomUUID();
+			
+			/*랜덤식별자_원래파일이름 = 저장될 파일이름 지정*/
+			String fileName = uuid + "_" + file.getOriginalFilename();
+			
+			/*빈 껍데기 생성*/
+			/*File을 생성할건데, 이름은 "name" 으로할거고, projectPath 라는 경로에 담긴다는 뜻*/
+			File saveFile = new File(projectPath, fileName);
+			
+			file.transferTo(saveFile);
+			
+			/*경로를 데이터베이스에 저장*/
+			param.put("imgName", fileName);
+			
+			service.listWrite(param);
+	
+			
+	    return ResponseEntity.status(HttpStatus.OK).body(100);
 	}
 	
 	

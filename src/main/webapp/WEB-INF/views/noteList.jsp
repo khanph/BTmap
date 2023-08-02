@@ -41,15 +41,15 @@
 						</tr>
 						<c:choose>
 							<c:when test="${list.imgName ne null }">
-								<tr>
-									<td colspan="4" style="text-align: left;">
-										<img alt="" src="img/note/${list.imgName}" style="height: 120px; width: 150px;">
-									</td>
-								</tr>
+							<tr style="border: border-bottom: 1px dotted; padding-bottom: 10px;">
+								<td colspan="4" style="text-align: left;">
+									<img alt="" src="img/note/${list.imgName}" style="height: 120px; width: 150px;">
+								</td>
+							</tr>
 							</c:when>
 						</c:choose>
 						<tr style="height: 20px;">
-							<td colspan="4" style="text-align: left; border-bottom: 1px dotted; padding-bottom: 10px;"> 
+							<td colspan="4" style="text-align: left; border-bottom: 1px dotted; padding-bottom: 10px; padding-left: 10px;"> 
 								${list.content}
 							</td>
 						</tr>
