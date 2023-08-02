@@ -13,19 +13,19 @@
           
             <div class="col-sm-6">
               <label for="firstName" class="form-label">아이디</label>
-              <input type="text" class="form-control" name="name" placeholder="아이디를 입력해주세요" required="">
+              <input type="text" class="form-control" name="name" placeholder="아이디를 입력해주세요" required="required">
               <label for="firstName" class="form-label">비밀번호</label>
-              <input type="password" class="form-control" name="pass" placeholder="비밀번호를 입력해주세요" required="">
+              <input type="password" class="form-control" name="pass" placeholder="비밀번호를 입력해주세요" required="required">
             </div>
             
             <div class="col-8">
               <label for="address" class="form-label">제목</label>
-              <input type="text" class="form-control" name="title" placeholder="제목를 입력해주세요" required="">
+              <input type="text" class="form-control" name="title" placeholder="제목를 입력해주세요" required="required">
             </div>
             
             <div class="col-8">
               <label for="address" class="form-label">내용</label> <br>
-              <textarea name="content" class="form-control" rows="10" placeholder="내용을 입력해주세요"></textarea>
+              <textarea name="content" class="form-control" rows="10" placeholder="내용을 입력해주세요" required="required"></textarea>
             </div>
             
             <div class="col-sm-6">
