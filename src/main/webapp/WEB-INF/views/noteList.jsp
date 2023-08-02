@@ -15,9 +15,10 @@
 	    </div>
 	</c:if>
 
-	<div class="card" style=" margin-left: 30%; margin-right: 30%; margin-top: 5%">
-	    <div class="card-header d-flex justify-content-between">우리들의 스토리
-	     	<button class=" btn btn-dark" type="button" onclick="location='noteWrite'">스토리작성하러가기</button>
+	<div class="card" style=" margin-left: 30%; margin-right: 30%;">
+	    <div class="card-header d-flex justify-content-between">
+	    	<strong class="mt-2">S T O R Y</strong>
+	     	<button class=" btn btn-dark" type="button" onclick="location='noteWrite'">글쓰기</button>
      	</div>
 	    <div class="card-body p-0 d-flex justify-content-center mb-5" style="width: 100%">
 	        <!-- Billing history table-->

@@ -18,12 +18,22 @@
 	  	<c:forEach items="${BTList}" var="BTList">
 	        <div class="list-group list-group-flush border-bottom scrollarea" style="margin-left: 50px;">
 	            <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true"
-	               onclick="panTo(${BTList.spotname}, ${BTList.latitude}, ${BTList.longitude}, ${BTList.imgName})">
-	                <div class="d-flex w-100 align-items-center justify-content-between">
-	                    <img src="img/list/${BTList.imgName}" style="width: 150px; height: 120px">
-	                    <strong class="ms-1">${BTList.spotname}</strong> <br>
-	                    <small style="width: 150px">${BTList.description}</small>
-	                </div>
+	               onclick="panTo('${BTList.spotname}', ${BTList.latitude}, ${BTList.longitude}, '${BTList.imgName}'); return false;">
+	               <div class="container text-center">
+					  <div class="row">
+					    <div class="col mb-3">
+		                    <strong class="ms-1">${BTList.spotname}</strong>
+					    </div>
+					  </div>
+					  <div class="row">
+					    <div class="col-md-auto">
+	                   	 <img src="img/list/${BTList.imgName}" style="width: 150px; height: 120px">
+					    </div>
+					    <div class="col-7">
+	                   	 <small style="width: 150px">${BTList.description}</small>
+					    </div>
+					  </div>
+					</div>
 	            </a>
 	        </div>
 	    </c:forEach>
@@ -46,7 +56,7 @@
 ////////////////////////////지도 생성///////////////////////////////////
 var mapContainer = document.getElementById('map'),
 mapOption = {
-    center: new kakao.maps.LatLng(35.15767875878566, 129.05913411487356),
+    center: new kakao.maps.LatLng(35.13620824142927, 129.11692092842443),
     level: 8
 };
 	
@@ -96,24 +106,10 @@ places.forEach(function(place) {
 
 
 ////////////////////////////화면이동///////////////////////////////////
- function panTo(latitude, longitude, spotname) {
-// 	console.log(latitude+", "+longitude)
+ function panTo(spotname, latitude, longitude, imgName) {
       // 이동할 위도 경도 위치를 생성합니다
     var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
-	var markerPosition  = new kakao.maps.LatLng(latitude, longitude); 
-	marker = new kakao.maps.Marker({
-	   position: markerPosition
-	});
-	 // 기존 마커가 존재하면 지우고 새로운 마커 생성
-    if (marker) {
-	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-        marker.setMap(null);
-    }
-    // 새로운 마커 생성
-    marker = new kakao.maps.Marker({
-        position: moveLatLon,
-        map: map
-    });
+    
 	var iwContent = '<div style="padding:5px;">'+spotname+'</div>', 
 					// 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
     				iwPosition = new kakao.maps.LatLng(latitude, longitude); //인포윈도우 표시 위치입니다
@@ -126,8 +122,6 @@ places.forEach(function(place) {
     				  
     				// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
     				infowindow.open(map, marker); 
-      // 지도 중심을 부드럽게 이동시킵니다
-      // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
     map.panTo(moveLatLon);
   }
 
@@ -153,8 +147,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     // 마커 위치를 클릭한 위치로 옮깁니다
     marker.setPosition(latlng);
     
-    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    var message = '클릭한 위치의 위도 ' + latlng.getLat() + ', ';
+    message += '경도 ' + latlng.getLng() + ', ';
     
     var resultDiv = document.getElementById('clickLatlng'); 
     resultDiv.innerHTML = message;
@@ -165,7 +159,6 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
 
     
-</script>
 
 
 
