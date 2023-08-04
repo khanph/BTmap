@@ -61,6 +61,7 @@
             	console.log(data);
                 if (data) {
                   	alert('글쓰기 성공')
+                  	window.location.href = '/noteList'; 
                 } else {
                     alert('실패');
                 }

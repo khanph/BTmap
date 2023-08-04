@@ -21,7 +21,6 @@
 	    <ul class="nav nav-pills mt-2">
 	      <li class="nav-item"><a href="BTmap" class="nav-link">지도보기</a></li>
 	      <li class="nav-item"><a href="noteList" class="nav-link">게시판</a></li>
-	      <li class="nav-item"><a href="listWrite" class="nav-link">About</a></li>
 	    </ul>
     </header>
   </div>

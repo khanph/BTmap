@@ -40,7 +40,7 @@
             
 	        <hr class="my-3">
 	        <div class="d-flex justify-content-evenly">
-		        <button class=" btn btn-dark" type="submit">작성완료</button>
+		        <button class=" btn btn-dark" type="button" onclick="uploadData()">작성완료</button>
 		        <button class=" btn btn-dark" type="button" onclick="location='BTmap'">작성취소</button>
 	        </div>
 	          
@@ -62,10 +62,9 @@
             contentType: false,
             data: formData,
             success: function (data) {
-            	console.log(data);
                 if (data) {
                   	alert('글쓰기 성공')
-                  	window.location.href = 'redirect:/noteList'; 
+                  	window.location.href = '/listWrite'; 
                 } else {
                     alert('실패');
                 }
