@@ -29,9 +29,6 @@
 	</main>
 </body>
 </html>
-<<script type="text/javascript">
-
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     function adminLogin() {
@@ -47,9 +44,12 @@
                 if (data==400) {
                   	alert('아이디가 없습니다.')
                   	window.location.href = '/adminLogin'; 
-                } else if (data==100) {
+            	console.log(formData.get("password"));
+            	console.log(data);
+            	
+                } else if (data===formData.get("password")) {
                       	alert('환영합니다')
-                      	window.location.href = '/BTmap'; 
+                        window.location.href = '/BTmap?admin=' + formData.get("username");
                 } else {
                     alert('비번이 안맞음');
               	window.location.href = '/adminLogin'; 
@@ -60,4 +60,5 @@
             }
         });
     }
+    
 </script>

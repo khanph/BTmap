@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,12 +33,22 @@ public class BTmapController {
 	private BTmapService service;
 	
 	@RequestMapping("/BTmap")
-	public String BTmap(Model model) {
+	public String BTmap(@RequestParam HashMap<String, String> param,Model model,HttpSession session) {
 		log.info("@# BTmap");
+		log.info("@# BTmap param"+param);
 		log.info("@# BTmap BTList"+service.BTList());
-		model.addAttribute("BTList", service.BTList());
-		
-		return "map";
+		if (param.isEmpty()) {
+			model.addAttribute("BTList", service.BTList());
+			return "map";
+			
+		}else {
+			model.addAttribute("BTList", service.BTList());
+			ArrayList<AdminDTO> dto=service.adminLogin(param.get("admin"));
+			String admin=dto.get(0).getUsername();
+//			model.addAttribute("admin", admin);
+			session.setAttribute("admin", admin);
+			return "map";
+		}
 	}
 	
 	@RequestMapping("/noteList")
@@ -133,23 +145,27 @@ public class BTmapController {
 	}
 	
 	@RequestMapping("/adminLoginOk")
-	public ResponseEntity<Integer> adminLoginOk(@RequestParam HashMap<String, String> param) {
+	public ResponseEntity<Object> adminLoginOk(@RequestParam HashMap<String, String> param, Model model) {
 		log.info("adminLoginOk param"+param);
 		ArrayList<AdminDTO> dto=service.adminLogin(param.get("username"));
 		
 		if (dto.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.OK).body(400);
 		}else {
-			log.info("adminLoginOk getPassword=="+dto.get(0).getPassword());
 			if (dto.get(0).getPassword().equals(param.get("password"))) {
-				return ResponseEntity.status(HttpStatus.OK).body(100);
+				log.info("adminLoginOk admin="+dto.get(0));
+				return ResponseEntity.status(HttpStatus.OK).body(dto.get(0).getPassword());
 			}else {
 				return ResponseEntity.status(HttpStatus.OK).body(200);
 			}
 		}
 	}
-	
-	
+//	로그 아웃
+    @RequestMapping("/logout")
+    public ResponseEntity<Object> logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return ResponseEntity.status(HttpStatus.OK).body(100); // 로그아웃 후 리다이렉트할 페이지
+    }
 }
 
 
