@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.boot.dto.AdminDTO;
 import com.boot.dto.Criteria;
 import com.boot.dto.NoteDTO;
 import com.boot.dto.TouristspotsDTO;
@@ -13,6 +14,7 @@ import com.boot.dto.TouristspotsDTO;
 public interface BTmapDao {
 	public ArrayList<NoteDTO> noteList(Criteria cri);
 	public ArrayList<TouristspotsDTO> BTList();
+	public ArrayList<AdminDTO> adminLogin(String username);
 	public int totalCount();
 	public void noteWrite(HashMap<String, String> param);
 	public void listWrite(HashMap<String, String> param);

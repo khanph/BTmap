@@ -1,6 +1,7 @@
 package com.boot;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.boot.dto.AdminDTO;
 import com.boot.dto.Criteria;
 import com.boot.dto.PageDTO;
 import com.boot.service.BTmapService;
@@ -122,6 +124,29 @@ public class BTmapController {
 	
 			
 	    return ResponseEntity.status(HttpStatus.OK).body(100);
+	}
+	
+//	관리자 로그인페이지
+	@RequestMapping("/adminLogin")
+	public String adminLogin() {
+		return "adminLogin";
+	}
+	
+	@RequestMapping("/adminLoginOk")
+	public ResponseEntity<Integer> adminLoginOk(@RequestParam HashMap<String, String> param) {
+		log.info("adminLoginOk param"+param);
+		ArrayList<AdminDTO> dto=service.adminLogin(param.get("username"));
+		
+		if (dto.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(400);
+		}else {
+			log.info("adminLoginOk getPassword=="+dto.get(0).getPassword());
+			if (dto.get(0).getPassword().equals(param.get("password"))) {
+				return ResponseEntity.status(HttpStatus.OK).body(100);
+			}else {
+				return ResponseEntity.status(HttpStatus.OK).body(200);
+			}
+		}
 	}
 	
 	

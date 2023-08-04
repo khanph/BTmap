@@ -55,6 +55,15 @@
    	 	]]>
     </insert>
     
+     <select id="adminLogin" resultType="com.boot.dto.AdminDTO" parameterType="com.boot.dto.AdminDTO">
+	     <![CDATA[
+			select * from admin_users WHERE USERNAME = #{USERNAME}
+		]]>
+	</select>
+
+    
+    
+    
 </mapper>
 
 
